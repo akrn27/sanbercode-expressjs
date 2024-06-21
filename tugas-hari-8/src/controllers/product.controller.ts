@@ -14,7 +14,7 @@ export const createProduct = async (req: any, res: any) => {
 
 export const getAllProducts = async (req: any, res: any) => {
   try {
-    const result = await productsModel.find();
+    const result = await productsModel.find().populate('categoryId');
     res.status(200).json({
       data: result,
       message: "Success get all products",
