@@ -18,11 +18,13 @@
     "typescript": "^5.5.2"
   },
   "dependencies": {
+    "@types/yup": "^0.32.0",
     "body-parser": "^1.20.2",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "mongodb": "^6.7.0",
     "mongoose": "^8.4.3",
-    "ts-node-dev": "^2.0.0"
+    "ts-node-dev": "^2.0.0",
+    "yup": "^1.4.0"
   }
 }

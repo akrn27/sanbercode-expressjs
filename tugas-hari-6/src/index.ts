@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-app.use(express.json());
+// app.use(express.json());
 
 // Inisialisasi Awal Products
 let products = [
@@ -33,7 +33,8 @@ app.post('/api/products', (req: any, res: any) => {
     const newProduct = req.body;
     newProduct.id = products.length ? products[products.length - 1].id + 1 : 1;
     products.push(newProduct);
-    res.status(201).json(newProduct);
+    res.status(201).json({datas: newProduct});
+    console.log(newProduct)
 })
 
 // Put a product | Question 4
