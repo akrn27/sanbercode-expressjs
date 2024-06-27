@@ -45,6 +45,11 @@ app.get('/orders', (req: any, res: any) => {
     res.send('List of orders');
 })
 
+// Endpoint untuk memperbaiki semua bug secara otomatis :v
+app.get('/fixallbugs', (req: any, res: any) => {
+    res.send('All bugs have been fixed automatically')
+})
+
 app.listen(port, () => {
     console.log(`Server running on port ${port}`)
 })
