@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { encrypt } from "../utils/encryption";
-import { SECRET } from "../utils/env"
+import { SECRET } from "../utils/env";
 
 const Schema = mongoose.Schema;
 
@@ -24,11 +24,12 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    role: {
-      type: String,
-      enum: ["admin", "user"],
-      default: "user",
-    },
+    roles: [
+      {
+        type: String,
+        default: "user",
+      },
+    ],
     profilePicture: {
       type: String,
       default: "default.jpg",
@@ -38,22 +39,22 @@ const userSchema = new Schema(
 );
 
 userSchema.pre("save", async function (next) {
-    const user = this;
-    user.password = encrypt(SECRET, user.password);
-    next();
-})
+  const user = this;
+  user.password = encrypt(SECRET, user.password);
+  next();
+});
 
-userSchema.pre('updateOne', async function (next) {
-    const user = (this as unknown as {_update: any})._update;
-    user.password = encrypt(SECRET, user.password);
-    next();
-})
+userSchema.pre("updateOne", async function (next) {
+  const user = (this as unknown as { _update: any })._update;
+  user.password = encrypt(SECRET, user.password);
+  next();
+});
 
 userSchema.methods.toJSON = function () {
-    const user = this.toObject()
-    delete user.password;
-    return user;
-}
+  const user = this.toObject();
+  delete user.password;
+  return user;
+};
 
 const userModel = mongoose.model("User", userSchema);
 

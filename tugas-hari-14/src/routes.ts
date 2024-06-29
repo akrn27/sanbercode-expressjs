@@ -4,6 +4,7 @@ import { createCategory, deleteCategory, getAllCategories, getCategory, updateCa
 import { single } from "./middleware/upload.middleware";
 import authController from './controllers/auth.controller';
 import authMiddleware from "./middleware/auth.middleware";
+import aclMiddleware from "./middleware/acl.middleware";
 
 const router = express.Router()
 
@@ -24,7 +25,7 @@ router.delete('/category/:id', deleteCategory)
 // Authentication
 router.post("/auth/login", authController.login);
 router.post("/auth/register", authController.register);
-router.get("/auth/me", authMiddleware, authController.me);
+router.get("/auth/me", [authMiddleware, aclMiddleware(["admin"])], authController.me);
 router.put("/auth/profile", authMiddleware, authController.profile);
 
 export default router;
