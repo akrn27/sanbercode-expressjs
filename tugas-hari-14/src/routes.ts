@@ -25,7 +25,7 @@ router.delete('/category/:id', deleteCategory)
 // Authentication
 router.post("/auth/login", authController.login);
 router.post("/auth/register", authController.register);
-router.get("/auth/me", [authMiddleware, aclMiddleware(["admin"])], authController.me);
+router.get("/auth/me", [authMiddleware, aclMiddleware(["user"])], authController.me);
 router.put("/auth/profile", authMiddleware, authController.profile);
 
 export default router;

@@ -20,13 +20,14 @@ export default (req: Request, res: Response, next: NextFunction) => {
     });
   }
 
-  const user = jwt.verify(accessToken, SECRET) as { id: string; roles: string };
-
+  const user = jwt.verify(accessToken, SECRET) as { id: string; roles: string[] };
+  
   if (!user) {
     return res.status(401).json({
       msg: "Unauthorized",
     });
   }
+
 
   (req as IReqUser).user = {
     id: user.id,

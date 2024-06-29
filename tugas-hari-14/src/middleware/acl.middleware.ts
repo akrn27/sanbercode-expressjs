@@ -3,7 +3,8 @@ import { IReqUser } from "@/utils/interfaces";
 
 export default (roles: string[]) =>
   (req: Request, res: Response, next: NextFunction) => {
-    const userRoles = (req as IReqUser).user.roles as any;
+
+    const userRoles = (req as IReqUser).user?.roles as string[];
 
     if (!userRoles || !userRoles.some((userRole: any) => roles.includes(userRole))) {
       return res.status(403).json({

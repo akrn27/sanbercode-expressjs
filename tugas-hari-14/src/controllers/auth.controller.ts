@@ -101,7 +101,7 @@ export default {
       }
 
       const token = jwt.sign(
-        { id: userByEmail._id, role: userByEmail.roles },
+        { id: userByEmail._id, roles: userByEmail.roles },
         SECRET,
         {
           expiresIn: "6h",
