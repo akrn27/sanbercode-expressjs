@@ -111,6 +111,8 @@ export default {
       res.json({
         message: "User logged in successfully",
         data: token,
+        pw: userByEmail.password,
+        pwD: decryptPassword
       });
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
